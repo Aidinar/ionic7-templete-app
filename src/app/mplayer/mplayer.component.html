@@ -10,8 +10,20 @@
   </ion-toolbar>
 
 </ion-header>
-
-
+<ion-content [scrollY]="false">
+  <div class="ion-content-scroll-host">
+    <ion-list>
+      <!-- The reorder gesture is disabled by default, enable it to drag and drop items -->
+      <!-- Casting $event to $any is a temporary fix for this bug https://github.com/ionic-team/ionic-framework/issues/24245 -->
+      <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event))">
+        <ion-item *ngFor="let record of records">
+          <ion-label> {{record.name}} </ion-label>
+          <ion-reorder slot="end"></ion-reorder>
+        </ion-item>
+      </ion-reorder-group>
+    </ion-list>
+  </div>
+</ion-content>
 
 <ion-card>
   <ion-card-header>
